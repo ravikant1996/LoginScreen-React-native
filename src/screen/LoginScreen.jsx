@@ -6,7 +6,7 @@ import { colors } from '../utils/colors'
 import { fonts } from '../utils/fonts'
 
 const LoginScreen = () => {
-    const [secureEntry, setSecureEntry]= useState(true)
+    const [secureEntry, setSecureEntry] = useState(true)
     return (
         <View style={styles.container}>
             <TouchableOpacity style={styles.backButtonWrapper}>
@@ -34,19 +34,31 @@ const LoginScreen = () => {
                     <SimpleLineIcons name={"lock"} size={30}
                         color={colors.secondary} />
                     <TextInput style={styles.textInput}
-                        placeholder="Enter your password" 
-                        placeholderTextColor={colors.secondary} 
-                        secureTextEntry= {secureEntry}
-                        />
-                        <TouchableOpacity onPress={()=>{
-                            setSecureEntry((prev)=>!prev)
-                        }}>
+                        placeholder="Enter your password"
+                        placeholderTextColor={colors.secondary}
+                        secureTextEntry={secureEntry}
+                    />
+                    <TouchableOpacity onPress={() => {
+                        setSecureEntry((prev) => !prev)
+                    }}>
                         <SimpleLineIcons name={"eye"} size={20}
-                        color={colors.secondary} />
-                        
-                        </TouchableOpacity>
+                            color={colors.secondary} />
+
+                    </TouchableOpacity>
                 </View>
-                
+                <TouchableOpacity>
+                    <Text style={styles.forgetPasswordText}>
+                        Forget Password?
+                    </Text>
+                </TouchableOpacity>
+                <TouchableOpacity style={styles.loginButtonWrapper}>
+                    <Text style={styles.loginText}>
+                        Login
+                    </Text>
+                </TouchableOpacity>
+                <Text style={styles.continueText}>
+                        or continue with
+                    </Text>
             </View>
         </View>
     );
@@ -87,11 +99,37 @@ const styles = StyleSheet.create({
         flexDirection: "row",
         alignItems: "center",
         padding: 2,
-        marginVertical:10
+        marginVertical: 10
     },
     textInput: {
         flex: 1,
         paddingHorizontal: 10,
         fontFamily: fonts.Light,
+    },
+    forgetPasswordText: {
+        textAlign: "right",
+        color: colors.primary,
+        fontFamily: fonts.SemiBold,
+        marginVertical: 10,
+    },
+    loginButtonWrapper: {
+        backgroundColor: colors.primary,
+        borderRadius: 100,
+        marginTop: 20
+    },
+    loginText: {
+        fontSize: 18,
+        color: colors.white,
+        fontFamily: fonts.SemiBold,
+        textAlign: "center",
+        padding: 10,
+    },
+    continueText:{
+        textAlign: "center",
+        marginVertical:20,
+        fontSize: 14,
+        fontFamily:fonts.Regular,
+        color: colors.primary,
+
     }
 });
