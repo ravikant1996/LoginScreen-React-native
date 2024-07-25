@@ -1,15 +1,22 @@
-import { StyleSheet, Text, TextInput, TouchableOpacity, View } from 'react-native'
+import { Image, StyleSheet, Text, TextInput, TouchableOpacity, View } from 'react-native'
 import React, { useState } from 'react'
 import Ionicons from "react-native-vector-icons/Ionicons"
 import SimpleLineIcons from "react-native-vector-icons/SimpleLineIcons"
 import { colors } from '../utils/colors'
 import { fonts } from '../utils/fonts'
+import { useNavigation } from '@react-navigation/native'
 
 const LoginScreen = () => {
-    const [secureEntry, setSecureEntry] = useState(true)
+    const navigation= useNavigation();
+    const [secureEntry, setSecureEntry] = useState(true);
+
+    const handleGoBack= ()=>{
+        navigation.goBack();
+    }
     return (
         <View style={styles.container}>
-            <TouchableOpacity style={styles.backButtonWrapper}>
+            <TouchableOpacity style={styles.backButtonWrapper}
+            onPress={handleGoBack}>
                 <Ionicons name={"arrow-back-outline"}
                     color={colors.primary}
                     size={25} />
@@ -57,8 +64,18 @@ const LoginScreen = () => {
                     </Text>
                 </TouchableOpacity>
                 <Text style={styles.continueText}>
-                        or continue with
+                    or continue with
+                </Text>
+                <TouchableOpacity style={styles.googleButtonContainer}>
+                    <Image source={require("../assets/google.png")} style={styles.googleImage} />
+                    <Text style={styles.googleText}>
+                        Google
                     </Text>
+                </TouchableOpacity>
+                <View style={styles.footerContainer}>
+                    <Text style={styles.accountText}> Don't have an account?  </Text>
+                    <Text style={styles.signupText}> Sign Up</Text>
+                </View>
             </View>
         </View>
     );
@@ -124,12 +141,44 @@ const styles = StyleSheet.create({
         textAlign: "center",
         padding: 10,
     },
-    continueText:{
+    continueText: {
         textAlign: "center",
-        marginVertical:20,
+        marginVertical: 20,
         fontSize: 14,
-        fontFamily:fonts.Regular,
+        fontFamily: fonts.Regular,
         color: colors.primary,
-
+    },
+    googleButtonContainer: {
+        flexDirection: "row",
+        borderWidth: 2,
+        borderColor: colors.primary,
+        borderRadius: 100,
+        justifyContent: "center",
+        alignItems: "center",
+        padding: 10,
+        gap: 10
+    },
+    googleImage: {
+        height: 20,
+        width: 20,
+    },
+    googleText: {
+        fontSize: 20,
+        fontFamily: fonts.SemiBold,
+    },
+    footerContainer: {
+        flexDirection: "row",
+        justifyContent: "center",
+        alignItems: "center",
+        marginVertical: 20,
+        gap: 2
+    },
+    accountText:{
+        color: colors.primary,
+        fontFamily: fonts.Regular,
+    },
+    signupText:{
+        color: colors.primary,
+        fontFamily: fonts.Bold,
     }
 });
