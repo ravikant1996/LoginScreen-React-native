@@ -6,16 +6,19 @@ import { colors } from '../utils/colors'
 import { fonts } from '../utils/fonts'
 import { useNavigation } from '@react-navigation/native'
 
-const LoginScreen = () => {
+const SignupScreen = () => {
     const navigation = useNavigation();
     const [secureEntry, setSecureEntry] = useState(true);
 
     const handleGoBack = () => {
         navigation.goBack();
     }
-    const handleSignUp = () => {
-        navigation.navigate("SIGNUP")
-    }
+  const handleLogin= ()=>{
+    navigation.navigate("LOGIN")
+  }
+  const handleSignUp= ()=>{
+    navigation.navigate("SIGNUP")
+  }
     return (
         <View style={styles.container}>
             <TouchableOpacity style={styles.backButtonWrapper}
@@ -25,9 +28,8 @@ const LoginScreen = () => {
                     size={25} />
             </TouchableOpacity>
             <View style={styles.textContainer}>
-                <Text style={styles.headingText}>Hey</Text>
-                <Text style={styles.headingText}>Welcome</Text>
-                <Text style={styles.headingText}>Back</Text>
+                <Text style={styles.headingText}>Let's get</Text>
+                <Text style={styles.headingText}>started</Text>
             </View>
             <View style={styles.formContainer}>
                 <View style={styles.inputContainer}>
@@ -38,6 +40,15 @@ const LoginScreen = () => {
                         placeholder="Enter your email"
                         placeholderTextColor={colors.secondary}
                         keyboardType="email-address"
+                    />
+                </View>
+                <View style={styles.inputContainer}>
+                    <SimpleLineIcons name={"screen-smartphone"} size={30}
+                        color={colors.secondary} />
+                    <TextInput style={styles.textInput}
+                        placeholder="Enter your phone no"
+                        placeholderTextColor={colors.secondary}
+                        keyboardType="phone-pad"
                     />
                 </View>
                 <View style={styles.inputContainer}>
@@ -56,14 +67,9 @@ const LoginScreen = () => {
 
                     </TouchableOpacity>
                 </View>
-                <TouchableOpacity>
-                    <Text style={styles.forgetPasswordText}>
-                        Forget Password?
-                    </Text>
-                </TouchableOpacity>
                 <TouchableOpacity style={styles.loginButtonWrapper}>
                     <Text style={styles.loginText}>
-                        Login
+                        Sign up
                     </Text>
                 </TouchableOpacity>
                 <Text style={styles.continueText}>
@@ -76,9 +82,9 @@ const LoginScreen = () => {
                     </Text>
                 </TouchableOpacity>
                 <View style={styles.footerContainer}>
-                    <Text style={styles.accountText}> Don't have an account?  </Text>
-                    <TouchableOpacity onPress={handleSignUp}>
-                        <Text style={styles.signupText}> Sign Up</Text>
+                    <Text style={styles.accountText}> Already have an account!  </Text>
+                    <TouchableOpacity onPress={handleLogin}>
+                    <Text style={styles.signupText}> Login</Text>
                     </TouchableOpacity>
                 </View>
             </View>
@@ -86,7 +92,7 @@ const LoginScreen = () => {
     );
 }
 
-export default LoginScreen
+export default SignupScreen
 
 const styles = StyleSheet.create({
     container: {
